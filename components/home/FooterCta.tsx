@@ -546,8 +546,8 @@ export default function FooterCta() {
 
         {/* ── Footer nav ── */}
         <div className="mt-10 flex flex-wrap items-center justify-between gap-6">
-          <FooterNav inView={inView} reduceMotion={reduceMotion} />
-          <FooterSocialLinks inView={inView} reduceMotion={reduceMotion} />
+          <FooterNav inView={inView} reduceMotion={!!reduceMotion} />
+          <FooterSocialLinks inView={inView} reduceMotion={!!reduceMotion} />
         </div>
       </div>
     </section>
