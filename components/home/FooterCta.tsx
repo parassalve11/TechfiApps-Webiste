@@ -349,26 +349,28 @@ export default function FooterCta() {
           <motion.div
             ref={cardRef}
             initial={{ opacity: 0, y: 22 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: EASE }}
-            // Subtle floating animation when visible
-            {...(inView && !reduceMotion
-              ? {
-                  animate: {
-                    opacity: 1,
-                    y: [0, -5, 0],
-                  },
-                  transition: {
-                    opacity: { duration: 0.8, ease: EASE },
-                    y: {
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1,
-                    },
-                  },
-                }
-              : {})}
+            animate={
+              inView
+                ? reduceMotion
+                  ? { opacity: 1, y: 0 }
+                  : { opacity: 1, y: [0, -5, 0] }
+                : {}
+            }
+            transition={
+              inView
+                ? reduceMotion
+                  ? { duration: 0.8, ease: EASE }
+                  : {
+                      opacity: { duration: 0.8, ease: EASE },
+                      y: {
+                        duration: 5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1,
+                      },
+                    }
+                : {}
+            }
             className="relative z-10 max-w-2xl rounded-3xl border border-[#f0d3a4] bg-white/85 px-8 py-7 shadow-[0_12px_40px_rgba(178,120,34,0.18)] backdrop-blur"
           >
             <motion.p
