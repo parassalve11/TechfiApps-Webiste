@@ -130,7 +130,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: reduceMotion ? 0 : 0.55, ease: EASE }}
     >
-      <div className="max-w-[1200px] mx-auto px-6 py-5 flex items-center gap-6 relative">
+      <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center gap-6 relative">
 
         {/* Logo with hover scale */}
         <motion.div
@@ -140,6 +140,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3">
             <div className="nav-logo flex items-center gap-3">
               <motion.div
+                className="origin-left scale-125"
                 whileHover={
                   reduceMotion
                     ? {}
@@ -148,7 +149,7 @@ export default function Navbar() {
               >
                 <TechifyMark />
               </motion.div>
-              <span className="text-[0.95rem] font-semibold tracking-tight text-[#1e1a12]">
+              <span className="text-[1.1rem] font-semibold tracking-tight text-[#1e1a12]">
                 TechifyApps
               </span>
             </div>
@@ -156,69 +157,54 @@ export default function Navbar() {
         </motion.div>
 
         {/* Desktop nav links with animated underline */}
-        <div className="hidden lg:flex flex-1 items-center justify-center gap-8 text-[0.95rem] text-[#2c2c2c]">
-          {navLinks.map((link, index) => {
-            const active = isActiveLink(link.href, link.label);
-            return (
-              <motion.div
-                key={link.label}
-                initial={{ opacity: 0, y: reduceMotion ? 0 : -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: reduceMotion ? 0 : 0.4,
-                  delay: reduceMotion ? 0 : 0.1 + index * 0.07,
-                  ease: EASE,
-                }}
-              >
-                {link.label === "Solutions" ? (
-                  <button
-                    type="button"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      setSolutionsOpen((prev) => !prev);
-                    }}
-                    className={`nav-link relative group inline-flex flex-col items-center ${
-                      active ? "text-[#1e1a12] font-semibold" : ""
-                    }`}
-                    aria-haspopup="dialog"
-                    aria-expanded={solutionsOpen}
-                    aria-current={active ? "page" : undefined}
-                  >
-                    <span>{link.label}</span>
-                    <motion.span
-                      className="absolute -bottom-0.5 left-0 h-[1.5px] bg-[#e8a020] origin-left"
-                      initial={{ scaleX: active ? 1 : 0 }}
-                      animate={{ scaleX: active ? 1 : 0 }}
-                      whileHover={
-                        reduceMotion ? {} : { scaleX: 1, transition: { duration: 0.25, ease: EASE } }
-                      }
-                      style={{ width: "100%" }}
-                    />
-                  </button>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className={`nav-link relative group inline-flex flex-col items-center ${
-                      active ? "text-[#1e1a12] font-semibold" : ""
-                    }`}
-                    onClick={() => setSolutionsOpen(false)}
-                    aria-current={active ? "page" : undefined}
-                  >
-                    <span>{link.label}</span>
-                    <motion.span
-                      className="absolute -bottom-0.5 left-0 h-[1.5px] bg-[#e8a020] origin-left"
-                      initial={{ scaleX: active ? 1 : 0 }}
-                      animate={{ scaleX: active ? 1 : 0 }}
-                      whileHover={
-                        reduceMotion ? {} : { scaleX: 1, transition: { duration: 0.25, ease: EASE } }
-                      }
-                      style={{ width: "100%" }}
-                    />
-                  </Link>
-                )}
-              </motion.div>
-            );
-          })}
+        <div className="hidden lg:flex flex-1 items-center justify-center">
+          <div className="flex items-center gap-6 rounded-full border border-white/70 bg-white/85 px-8 py-3 shadow-[0_14px_30px_rgba(16,30,60,0.12)]">
+            {navLinks.map((link, index) => {
+              const active = isActiveLink(link.href, link.label);
+              const itemClass =
+                "rounded-full px-4 py-2 text-[0.75rem] font-semibold uppercase tracking-[0.22em] transition-colors";
+              const stateClass = active
+                ? "bg-[#f1f6ff] text-[#101316]"
+                : "text-[#1c1c1c] hover:bg-[#f1f6ff]";
+              return (
+                <motion.div
+                  key={link.label}
+                  initial={{ opacity: 0, y: reduceMotion ? 0 : -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.4,
+                    delay: reduceMotion ? 0 : 0.1 + index * 0.07,
+                    ease: EASE,
+                  }}
+                >
+                  {link.label === "Solutions" ? (
+                    <button
+                      type="button"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setSolutionsOpen((prev) => !prev);
+                      }}
+                      className={`${itemClass} ${stateClass}`}
+                      aria-haspopup="dialog"
+                      aria-expanded={solutionsOpen}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`${itemClass} ${stateClass}`}
+                      onClick={() => setSolutionsOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Right actions */}
@@ -242,7 +228,7 @@ export default function Navbar() {
           >
             <Link
               href="/contact"
-              className="rounded-full bg-[#111] px-5 py-2 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)] transition-colors hover:bg-[#2a2a2a]"
+              className="rounded-full bg-[#111] px-6 py-3 text-[0.72rem] font-bold uppercase tracking-[0.28em] text-white shadow-[0_12px_26px_rgba(0,0,0,0.25)] transition-colors hover:bg-[#2a2a2a]"
             >
               Talk to us
             </Link>
@@ -276,7 +262,7 @@ export default function Navbar() {
           >
             <Link
               href="/contact"
-              className="rounded-full bg-[#111] px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)] transition-colors hover:bg-[#2a2a2a]"
+              className="rounded-full bg-[#111] px-5 py-2.5 text-[0.7rem] font-bold uppercase tracking-[0.26em] text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)] transition-colors hover:bg-[#2a2a2a]"
             >
               Talk to us
             </Link>
