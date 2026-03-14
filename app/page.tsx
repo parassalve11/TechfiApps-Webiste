@@ -45,7 +45,15 @@ export default function Home() {
             />
           </div>
         </section>
-        <section className="bg-white py-14 md:py-18">
+       
+        <ServicesStrip />
+        <Integration />
+        <Marquee />
+        <Stats />
+        <DarkBanner />
+        <About />
+        <ServiceCards />
+         <section className="bg-white py-14 md:py-18">
           <div className="max-w-6xl mx-auto px-6 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] items-center">
             <div className="space-y-4">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#e8a020]">
@@ -68,13 +76,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <ServicesStrip />
-        <Integration />
-        <Marquee />
-        <Stats />
-        <DarkBanner />
-        <About />
-        <ServiceCards />
         <FooterCta />
       </main>
     </div>
