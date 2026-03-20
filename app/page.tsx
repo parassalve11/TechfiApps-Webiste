@@ -7,6 +7,7 @@ import Marquee from "@/components/home/Marquee";
 import ServiceCards from "@/components/home/ServiceCards";
 import ServicesStrip from "@/components/home/ServicesStrip";
 import Stats from "@/components/home/Stats";
+import TechLogoLoop from "@/components/home/TechLogoLoop";
 import Navbar from "@/components/shared/Navbar";
 import VideoComponent from "@/components/shared/VideoComponent";
 import { siteVideos } from "@/lib/videoData";
@@ -47,6 +48,7 @@ export default function Home() {
         </section>
        
         <ServicesStrip />
+        <TechLogoLoop />
         <Integration />
         <Marquee />
         <Stats />

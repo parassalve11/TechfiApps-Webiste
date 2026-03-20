@@ -7,6 +7,67 @@ import { useRef } from "react";
 import { productFeatures } from "./data";
 import { EASE } from "./animations";
 
+type ProductIconName = "gamepad" | "rewards" | "spark" | "analytics" | "mobile";
+
+function ProductIcon({ name, className }: { name: ProductIconName; className?: string }) {
+  const props = {
+    className,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  } as const;
+
+  switch (name) {
+    case "gamepad":
+      return (
+        <svg {...props}>
+          <rect x="3" y="9" width="18" height="8" rx="4" />
+          <path d="M8 13h4" />
+          <path d="M10 11v4" />
+          <circle cx="16.5" cy="12.5" r="1" />
+          <circle cx="18.5" cy="14.5" r="1" />
+        </svg>
+      );
+    case "rewards":
+      return (
+        <svg {...props}>
+          <circle cx="12" cy="8" r="4" />
+          <path d="M9 12v8l3-2 3 2v-8" />
+          <path d="M6 8h2" />
+          <path d="M16 8h2" />
+        </svg>
+      );
+    case "spark":
+      return (
+        <svg {...props}>
+          <path d="M12 3l2.4 5.2L20 10l-5.6 1.8L12 17l-2.4-5.2L4 10l5.6-1.8L12 3z" />
+        </svg>
+      );
+    case "analytics":
+      return (
+        <svg {...props}>
+          <path d="M4 19h16" />
+          <rect x="6" y="10" width="3" height="6" rx="1" />
+          <rect x="11" y="7" width="3" height="9" rx="1" />
+          <rect x="16" y="12" width="3" height="4" rx="1" />
+        </svg>
+      );
+    case "mobile":
+      return (
+        <svg {...props}>
+          <rect x="8" y="3" width="8" height="18" rx="2" />
+          <path d="M11 6h2" />
+          <path d="M10 18h4" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 export default function ProductSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -59,8 +120,8 @@ export default function ProductSection() {
                 transition={{ duration: 0.45, delay: 0.3 + i * 0.08, ease: EASE }}
                 whileHover={{ x: 6, transition: { duration: 0.2 } }}
               >
-                <span className="w-7 h-7 rounded-md bg-[#f5f0e8] flex items-center justify-center text-sm font-black text-[#e8a020] shrink-0 group-hover:bg-[#e8a020] group-hover:text-white transition-colors duration-200">
-                  {feat.icon}
+                <span className="w-8 h-8 rounded-lg bg-[#f5f0e8] flex items-center justify-center text-[#e8a020] shrink-0 group-hover:bg-[#e8a020] group-hover:text-white transition-colors duration-200">
+                  <ProductIcon name={feat.icon as ProductIconName} className="h-4 w-4" />
                 </span>
                 <span className="text-[0.85rem] text-[#333] font-medium">{feat.label}</span>
               </motion.div>
@@ -180,7 +241,9 @@ export default function ProductSection() {
                     transition={{ duration: 0.45, delay: 0.5 + i * 0.09, ease: EASE }}
                     whileHover={{ backgroundColor: "rgba(232,160,32,0.12)", x: 4, transition: { duration: 0.2 } }}
                   >
-                    <span className="text-lg">{feat.icon}</span>
+                    <span className="text-[#f5d080]">
+                      <ProductIcon name={feat.icon as ProductIconName} className="h-5 w-5" />
+                    </span>
                     <span className="text-white/80 text-xs font-medium">{feat.label}</span>
                     <motion.span
                       className="ml-auto w-1.5 h-1.5 rounded-full bg-[#e8a020]"

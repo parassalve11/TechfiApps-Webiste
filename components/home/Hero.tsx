@@ -25,6 +25,7 @@ const sparklePositions = [
 ];
 
 const heroPoints = ["MVPs in 6-10 weeks", "NDA-ready", "Full-stack + AI"];
+const HERO_EYEBROW = "ACCELERATE YOUR BUSINESS GROWTH WITH";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -138,7 +139,7 @@ export default function Hero() {
 
   // ── Typewriter for eyebrow ──
   const { displayed: eyebrowText } = useTypewriter(
-    "AI-POWERED PRODUCT STUDIO",
+    HERO_EYEBROW,
     textPhase ? 0 : 9999,
     38,
     !!(reduceMotion || !textPhase)
@@ -376,35 +377,54 @@ export default function Hero() {
 
         {/* ── Left: staggered text ── */}
         <motion.div
-          className="hero-left"
+          className="relative z-[2] pr-0 lg:pr-4 hidden md:block"
           initial="hidden"
           animate={textPhase ? "show" : "hidden"}
           variants={textContainer}
         >
           {/* Eyebrow — typewriter */}
-          <motion.p variants={fadeUp} className="eyebrow">
-            <span className="eyebrow-typed">
+          <motion.p
+            variants={fadeUp}
+            className="mb-[14px] flex items-center gap-[6px] text-[0.67rem] font-bold uppercase tracking-[0.18em] text-[#e0921a] [font-family:var(--font-barlow-condensed),sans-serif] md:mb-[18px] md:text-[0.72rem] md:tracking-[0.22em]"
+          >
+            <span className="eyebrow-typed text-[#e8a020]">
               {textPhase ? eyebrowText : ""}
-              {textPhase && eyebrowText.length < "AI-POWERED PRODUCT STUDIO".length && (
+              {textPhase && eyebrowText.length < HERO_EYEBROW.length && (
                 <span className="eyebrow-caret" aria-hidden="true" />
               )}
             </span>
           </motion.p>
 
           {/* Title — spring slam */}
-          <motion.h1 variants={titleContainer} className="hero-title">
-            <motion.span variants={titleLine} className="line1">AI + App</motion.span>
-            <motion.span variants={titleLine} className="line2">Development</motion.span>
-            <motion.span variants={titleLine} className="line3">for Modern Teams</motion.span>
+          <motion.h1
+            variants={titleContainer}
+            className="mb-6 text-[#111] leading-[0.92] tracking-[-0.02em] [font-family:var(--font-barlow-condensed),sans-serif] font-black"
+          >
+            <motion.span
+              variants={titleLine}
+              className="block text-[#1b140a] text-[clamp(2.4rem,10.5vw,2.8rem)] sm:text-[clamp(2.7rem,11.5vw,3.3rem)] md:text-[clamp(3rem,5.5vw,5.2rem)]"
+            >
+              AI + APP
+            </motion.span>
+            <motion.span
+              variants={titleLine}
+              className="block text-[#1b140a] text-[clamp(2.4rem,10.5vw,2.8rem)] sm:text-[clamp(2.7rem,11.5vw,3.3rem)] md:text-[clamp(3rem,5.5vw,5.2rem)]"
+            >
+              DEVELOPMENT
+            </motion.span>
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="hero-desc">
-            We design and build mobile apps, web platforms, and AI automation
-            optimized for speed, scalability, and measurable business outcomes.
+          <motion.p
+            variants={fadeUp}
+            className="mb-[22px] max-w-full text-[0.92rem] leading-[1.72] text-[#6a5a45] md:mb-[30px] md:max-w-[480px] md:text-[0.98rem] md:leading-[1.78]"
+          >
+            We help brands and startups build mobile apps, web platforms, and AI
+            automation, designed for speed, performance, and measurable business
+            outcomes.
           </motion.p>
 
           {/* Action buttons */}
-          <motion.div variants={actionContainer} className="hero-actions">
+          <motion.div variants={actionContainer} className="mb-[30px] flex flex-col items-stretch gap-[14px] md:flex-row md:flex-wrap">
             <motion.div variants={actionItem}>
               <motion.div
                 className="relative inline-block"
@@ -418,16 +438,22 @@ export default function Hero() {
                   }}
                   transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 1 }}
                 />
-                <Link href="/contact" className="btn-primary">Get a proposal</Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#f2b84b] px-7 py-[14px] text-[0.95rem] font-bold text-[#1a1a1a] shadow-[0_10px_24px_rgba(242,184,75,0.38)] transition-[transform,box-shadow] duration-200 hover:-translate-y-[2px] hover:shadow-[0_14px_30px_rgba(242,184,75,0.48)] [font-family:var(--font-barlow),Barlow,sans-serif] md:w-auto"
+                >
+                  Get a proposal
+                </Link>
               </motion.div>
             </motion.div>
           </motion.div>
 
-          <motion.ul variants={listContainer} className="hero-points">
+          <motion.ul variants={listContainer} className="m-0 flex list-none flex-wrap gap-x-5 gap-y-[10px] p-0 md:gap-x-7 md:gap-y-3">
             {heroPoints.map((point) => (
               <motion.li
                 key={point}
                 variants={listItem}
+                className="flex items-center gap-2 text-[0.86rem] font-medium text-[#5a4b3c] md:text-[0.92rem]"
                 whileHover={reduceMotion ? {} : { x: 4, transition: { duration: 0.2 } }}
               >
                 <span className="check-icon" aria-hidden="true" />
@@ -437,21 +463,57 @@ export default function Hero() {
           </motion.ul>
         </motion.div>
 
-        {/* ── Right: hero video + widgets ── */}
+        {/* Mobile-only hero card */}
+        <div className="hero-mobile-card md:hidden">
+          <div className="hero-mobile-media" aria-hidden="true">
+            <video
+              className="hero-mobile-video"
+              autoPlay
+              muted
+              playsInline
+              loop
+              preload="auto"
+              aria-hidden="true"
+            >
+              <source
+                src="/hero%20video/Futuristic%20android%20with%20glowing%20accents.webm"
+                type="video/webm"
+              />
+            </video>
+          </div>
+          <div className="hero-mobile-text">
+            <p className="hero-mobile-eyebrow">{HERO_EYEBROW}</p>
+            <h1 className="hero-mobile-title">
+              AI + APP
+              <br />
+              DEVELOPMENT
+            </h1>
+            <p className="hero-mobile-body">
+              We help brands and startups build mobile apps, web platforms, and AI
+              automation, designed for speed, performance, and measurable business
+              outcomes.
+            </p>
+            <Link href="/contact" className="hero-mobile-cta btn-primary">
+              Get a proposal
+            </Link>
+          </div>
+        </div>
+
+        {/* -- Right: hero video + widgets -- */}
         <motion.div
-          className="hero-right"
+          className="hero-right relative z-[2] hidden min-h-[560px] items-center justify-center md:flex"
           initial="hidden"
           animate="show"
           variants={rightReveal}
         >
-          <div className="planet-wrap">
+          <div className="planet-wrap pointer-events-none absolute right-[-80px] top-1/2 z-[1] h-[580px] w-[580px] -translate-y-1/2">
             <div className="glow-outer" />
 
             {/* Video sphere + border trace + scan line */}
-            <div className="planet-sphere">
+            <div className="planet-sphere absolute right-0 top-1/2 z-[2] h-[520px] w-[520px] -translate-y-1/2 overflow-hidden rounded-[32px] bg-transparent shadow-[0_24px_80px_rgba(18,28,45,0.2)]">
               <video
                 ref={videoRef}
-                className="planet-video"
+                className="planet-video relative z-[1] block h-full w-full object-contain"
                 autoPlay muted playsInline preload="auto" loop={false}
                 aria-hidden="true"
               >

@@ -21,7 +21,9 @@ export default function ContactFormSection({ intent }: ContactFormSectionProps) 
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const reduceMotion = useReducedMotion();
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", project: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [form, setForm] = useState({ name: "", email: "", project: "", website: "" });
   const [activeIntent, setActiveIntent] = useState<string | undefined>(intent);
 
   useEffect(() => {
@@ -30,11 +32,35 @@ export default function ContactFormSection({ intent }: ContactFormSectionProps) 
     setForm((prev) => ({ ...prev, project: template }));
     setActiveIntent(intent);
     setSent(false);
+    setStatus("idle");
+    setErrorMessage("");
   }, [intent]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    if (status === "sending") return;
+    setStatus("sending");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Something went wrong. Please try again.");
+      }
+
+      setSent(true);
+      setStatus("idle");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Unable to send right now.";
+      setErrorMessage(message);
+      setStatus("error");
+    }
   };
 
   return (
@@ -108,8 +134,8 @@ export default function ContactFormSection({ intent }: ContactFormSectionProps) 
               transition={{ type: "spring", stiffness: 260, damping: 18 }}
               className="bg-[#f5f0e8] rounded-2xl p-10 text-center"
             >
-              <div className="text-4xl mb-4">ðŸš€</div>
-              <h3 className="font-black text-xl text-[#1e1a12] mb-2">Request Sent!</h3>
+              <div className="text-4xl mb-4">Sent</div>
+              <h3 className="font-black text-xl text-[#1e1a12] mb-2">Request Sent</h3>
               <p className="text-sm text-[#666]">We'll get back to you within 24 hours.</p>
             </motion.div>
           ) : (
@@ -141,6 +167,16 @@ export default function ContactFormSection({ intent }: ContactFormSectionProps) 
                 </motion.div>
               ))}
 
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.website}
+                onChange={(e) => setForm({ ...form, website: e.target.value })}
+                className="sr-only"
+                aria-hidden="true"
+              />
+
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -149,11 +185,14 @@ export default function ContactFormSection({ intent }: ContactFormSectionProps) 
                 <textarea
                   placeholder="Project Idea"
                   rows={4}
+                  required
                   value={form.project}
                   onChange={(e) => setForm({ ...form, project: e.target.value })}
                   className="w-full bg-[#fafaf8] border border-[#e8e4da] rounded-lg px-4 py-3.5 text-sm text-[#1e1a12] placeholder-[#bbb] outline-none transition-all duration-200 focus:border-[#e8a020] focus:shadow-[0_0_0_3px_rgba(232,160,32,0.12)] resize-none"
                 />
               </motion.div>
+
+              {status === "error" && <div className="text-sm text-red-600">{errorMessage}</div>}
 
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -175,9 +214,10 @@ export default function ContactFormSection({ intent }: ContactFormSectionProps) 
                   type="submit"
                   whileHover={{ scale: 1.02, y: -2, boxShadow: "0 8px 24px rgba(232,160,32,0.35)" }}
                   whileTap={{ scale: 0.98 }}
+                  disabled={status === "sending"}
                   className="w-full bg-[#e8a020] text-black font-black uppercase tracking-[0.15em] text-sm py-4 rounded-lg transition-colors hover:bg-[#d4911a]"
                 >
-                  SEND REQUEST
+                  {status === "sending" ? "SENDING..." : "SEND REQUEST"}
                 </motion.button>
               </motion.div>
             </form>
@@ -187,3 +227,4 @@ export default function ContactFormSection({ intent }: ContactFormSectionProps) 
     </section>
   );
 }
+

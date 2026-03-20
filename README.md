@@ -20,6 +20,20 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Contact Form Email
+
+To enable the contact form email delivery, create a `.env.local` file in the project root with:
+
+```bash
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+EMAIL_FROM=devteam@techifyapps.com
+# Optional: use a dedicated inbox for contact notifications
+EMAIL_TO=your_email@gmail.com
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

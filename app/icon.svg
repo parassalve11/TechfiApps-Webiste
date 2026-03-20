@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 32" fill="none">
+  <rect x="1" y="1" width="32" height="8" rx="4" transform="rotate(18 1 1)" fill="#FFB320" />
+  <g transform="translate(2 17)">
+    <defs>
+      <clipPath id="techify-slice">
+        <polygon points="0,0 26,4.8 26,7.2 0,12" />
+      </clipPath>
+    </defs>
+    <rect width="26" height="12" rx="6" fill="#FFB320" clip-path="url(#techify-slice)" />
+  </g>
+</svg>

@@ -4,6 +4,7 @@ import Marquee from "@/components/home/Marquee";
 import AiSolutionsHero from "@/components/ai-solutions/AiSolutionsHero";
 import AiSolutionsOverview from "@/components/ai-solutions/AiSolutionsOverview";
 import AiSolutionsCta from "@/components/ai-solutions/AiSolutionsCta";
+import OpenSpaceFlow from "@/components/ai-solutions/OpenSpaceFlow";
 import VideoComponent from "@/components/shared/VideoComponent";
 import { siteVideos } from "@/lib/videoData";
 
@@ -42,11 +43,7 @@ export default function AiSolutionsPage() {
         <section className="relative overflow-hidden bg-[#0b101a] py-16 md:py-20">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(79,172,254,0.18),transparent_55%)]" />
           <div className="relative max-w-6xl mx-auto px-6 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] items-center">
-            <VideoComponent
-              videoSrc={siteVideos.openSpace.src}
-              effect="holographic"
-              className="aspect-[16/10] object-cover"
-            />
+            <OpenSpaceFlow />
             <div className="space-y-4">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#8fd7ff]">
                 Open Space Flow
@@ -55,8 +52,8 @@ export default function AiSolutionsPage() {
                 Holographic innovation showcase.
               </h3>
               <p className="text-[0.96rem] leading-relaxed text-[#cfd8e8]">
-                A polished holographic entrance for high-velocity team collaboration in real working
-                environments.
+                A data-driven view of the services and product modules that power delivery, with
+                live signals for velocity, automation, and outcomes.
               </p>
             </div>
           </div>

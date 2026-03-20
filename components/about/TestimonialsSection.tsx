@@ -7,6 +7,30 @@ import { useRef } from "react";
 import { testimonials } from "./data";
 import { EASE } from "./animations";
 
+const badgeIcons: Record<string, JSX.Element> = {
+  quality: (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12l4 4 10-10" />
+    </svg>
+  ),
+  speed: (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+    </svg>
+  ),
+  impact: (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3l2.4 5.2L20 10l-5.6 1.8L12 17l-2.4-5.2L4 10l5.6-1.8L12 3z" />
+    </svg>
+  ),
+};
+
+const badgeLabels: Record<string, string> = {
+  quality: "Quality",
+  speed: "Speed",
+  impact: "Impact",
+};
+
 export default function TestimonialsSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -44,17 +68,25 @@ export default function TestimonialsSection() {
                 boxShadow: "0 20px 48px rgba(0,0,0,0.1)",
                 transition: { duration: 0.3 },
               }}
-              className="bg-white border border-[#f0ece4] rounded-2xl p-6 flex flex-col group"
+              className="relative bg-white border border-[#f0ece4] rounded-3xl p-7 flex flex-col group overflow-hidden"
             >
-              <motion.div
-                className="w-10 h-10 rounded-full bg-[#f5f0e8] flex items-center justify-center text-lg mb-4"
-                whileHover={{ scale: 1.15, rotate: 10, backgroundColor: "#e8a020" }}
-                transition={{ duration: 0.2 }}
-              >
-                {t.emoji}
-              </motion.div>
+              <div className="absolute -top-1 left-7 h-1 w-12 rounded-full bg-[#e8a020]" />
 
-              <p className="text-[0.82rem] leading-relaxed text-[#555] flex-1 mb-5">
+              <div className="flex items-center justify-between mb-4">
+                <motion.div
+                  className="flex items-center gap-2 rounded-full bg-[#fff1d6] px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.15em] text-[#a66b10]"
+                  whileHover={{ scale: 1.04 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="text-[#c88b2a]">{badgeIcons[t.badge] ?? badgeIcons.quality}</span>
+                  <span>{badgeLabels[t.badge] ?? "Quality"}</span>
+                </motion.div>
+                <div className="rounded-full bg-[#fff7e0] px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-[#a66b10]">
+                  {t.metric}
+                </div>
+              </div>
+
+              <p className="text-[0.85rem] leading-relaxed text-[#5b4a2e] flex-1 mb-5">
                 "{t.quote}"
               </p>
 
@@ -66,12 +98,14 @@ export default function TestimonialsSection() {
               />
 
               <div className="flex items-center gap-3">
-                <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0">
-                  <Image src={t.img} alt={t.name} fill className="object-cover" sizes="36px" />
+                <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 border border-[#f0ece4]">
+                  <Image src={t.img} alt={t.name} fill className="object-cover" sizes="40px" />
                 </div>
                 <div>
-                  <div className="text-[0.8rem] font-black text-[#1e1a12]">â€” {t.name}</div>
-                  <div className="text-[0.65rem] uppercase tracking-[0.1em] text-[#999]">{t.title}</div>
+                  <div className="text-[0.82rem] font-black text-[#1e1a12]">- {t.name}</div>
+                  <div className="text-[0.65rem] uppercase tracking-[0.1em] text-[#999]">
+                    {t.title} / {t.company}
+                  </div>
                 </div>
               </div>
             </motion.div>

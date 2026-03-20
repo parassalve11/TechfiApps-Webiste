@@ -1,14 +1,6 @@
 "use client";
 
-// Navbar.tsx
-// Animations added:
-// - Entrance: navbar slides down from top on mount
-// - Scroll: navbar background becomes opaque + shadow on scroll (glass morphism effect)
-// - Nav links: underline slides in on hover from left to right
-// - Buttons: scale + color transition on hover with micro-interaction
-// - Logo: scale on hover
-// - Mobile: existing layout preserved, book-a-call button animates
-// - useReducedMotion respected
+
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -130,17 +122,17 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: reduceMotion ? 0 : 0.55, ease: EASE }}
     >
-      <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center gap-6 relative">
+      <div className="max-w-[1200px] mx-auto px-4 py-3 sm:px-6 sm:py-4 flex items-center gap-3 sm:gap-6 relative">
 
         {/* Logo with hover scale */}
         <motion.div
           whileHover={reduceMotion ? {} : { scale: 1.04, transition: { duration: 0.2 } }}
           whileTap={reduceMotion ? {} : { scale: 0.97 }}
         >
-          <Link href="/" className="flex items-center gap-3">
-            <div className="nav-logo flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="nav-logo flex items-center gap-2.5 sm:gap-3 min-w-0">
               <motion.div
-                className="origin-left scale-125"
+                className="origin-left scale-110 sm:scale-125"
                 whileHover={
                   reduceMotion
                     ? {}
@@ -149,7 +141,7 @@ export default function Navbar() {
               >
                 <TechifyMark />
               </motion.div>
-              <span className="text-[1.1rem] font-semibold tracking-tight text-[#1e1a12]">
+              <span className="text-[0.96rem] sm:text-[1.1rem] font-semibold tracking-tight text-[#1e1a12] whitespace-nowrap">
                 TechifyApps
               </span>
             </div>
@@ -236,7 +228,21 @@ export default function Navbar() {
         </div>
 
         {/* Mobile actions */}
-        <div className="ml-auto md:hidden flex items-center gap-3">
+        <div className="ml-auto md:hidden flex items-center gap-2 shrink-0">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: reduceMotion ? 0 : 0.35, delay: 0.15 }}
+            whileHover={reduceMotion ? {} : { scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <Link
+              href="/contact"
+              className="rounded-full bg-[#111] px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-white shadow-[0_8px_20px_rgba(0,0,0,0.25)] transition-colors hover:bg-[#2a2a2a] whitespace-nowrap"
+            >
+              Talk to us
+            </Link>
+          </motion.div>
           <motion.button
             type="button"
             onClick={() => setMobileOpen((prev) => !prev)}
@@ -253,20 +259,6 @@ export default function Navbar() {
               <span className={`h-[2px] w-5 bg-current transition-transform ${mobileOpen ? "-translate-y-[6px] -rotate-45" : ""}`} />
             </div>
           </motion.button>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: reduceMotion ? 0 : 0.4, delay: 0.2 }}
-            whileHover={reduceMotion ? {} : { scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <Link
-              href="/contact"
-              className="rounded-full bg-[#111] px-5 py-2.5 text-[0.7rem] font-bold uppercase tracking-[0.26em] text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)] transition-colors hover:bg-[#2a2a2a]"
-            >
-              Talk to us
-            </Link>
-          </motion.div>
         </div>
       </div>
 
@@ -290,7 +282,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.25, ease: EASE }}
           >
-            <div className="mx-auto max-w-[1200px] px-6 pb-6">
+            <div className="mx-auto max-w-[1200px] px-4 sm:px-6 pb-5 sm:pb-6">
               <div className="rounded-2xl border border-[#efe2cf] bg-white shadow-[0_24px_60px_rgba(0,0,0,0.18)] p-5">
                 <div className="flex flex-col gap-3 text-[0.95rem] text-[#2c2c2c]">
                   {navLinks

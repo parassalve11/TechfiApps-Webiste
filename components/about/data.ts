@@ -34,11 +34,11 @@ export const teamMembers = [
 ];
 
 export const productFeatures = [
-  { icon: "GM", label: "Gamified Mini Games" },
-  { icon: "RW", label: "Unified Reward Redemption" },
-  { icon: "+", label: "Unified + reward recomposition" },
-  { icon: "AN", label: "PlainBoard dashboard / Analytics" },
-  { icon: "MB", label: "Mobile Risk performance UI" },
+  { icon: "gamepad", label: "Gamified Mini Games" },
+  { icon: "rewards", label: "Unified Reward Redemption" },
+  { icon: "spark", label: "AI Engagement Orchestration" },
+  { icon: "analytics", label: "PlainBoard Dashboard / Analytics" },
+  { icon: "mobile", label: "Mobile Risk Performance UI" },
 ];
 
 export const testimonials = [
@@ -46,22 +46,28 @@ export const testimonials = [
     quote: "The team at THEYAPP delivered exceptional AI integration that transformed our workflow.",
     name: "Julia Chen",
     title: "Product Manager",
-    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80",
-    emoji: "OK",
+    company: "NovaPay",
+    metric: "2.6x adoption",
+    img: "https://images.unsplash.com/photo-1672527838035-90ae2ad2e813?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=80&w=400",
+    badge: "quality",
   },
   {
     quote: "Our team is agile, and THEYAPP matched our speed and quality bar every sprint.",
     name: "Mike Peters",
     title: "CEO",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
-    emoji: "A+",
+    company: "Brightline Labs",
+    metric: "6-week MVP",
+    img: "https://images.unsplash.com/photo-1573496527892-904f897eb744?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=80&w=400",
+    badge: "speed",
   },
   {
     quote: "The team is agile, THEYAPP's AI tools improved our speed-utility co-efficiency greatly.",
     name: "Aman Patel",
     title: "CEO",
-    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&q=80",
-    emoji: "WIN",
+    company: "Orbit Health",
+    metric: "38% faster",
+    img: "https://images.unsplash.com/photo-1675403493729-1ba151e99b6a?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=80&w=400",
+    badge: "impact",
   },
 ];
 
@@ -71,5 +77,3 @@ export const teamPhotos = [
   "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&q=80",
   "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=80",
 ];
-
-

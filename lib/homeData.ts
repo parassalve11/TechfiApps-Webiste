@@ -85,7 +85,7 @@ export const serviceCards = [
 
 export const footerLinks = [
   { label: "About Us", href: "/about" },
-  { label: "Support", href: "/contact" },
+  { label: "Support", href: "/support" },
   { label: "Terms & Conditions", href: "/terms" },
   { label: "Privacy Policy", href: "/privacy" },
 ];
