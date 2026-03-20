@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, type ReactNode } from "react";
 
 import { testimonials } from "./data";
 import { EASE } from "./animations";
 
-const badgeIcons: Record<string, JSX.Element> = {
+const badgeIcons: Record<string, ReactNode> = {
   quality: (
     <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M5 12l4 4 10-10" />
