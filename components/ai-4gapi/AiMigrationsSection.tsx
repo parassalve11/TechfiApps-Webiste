@@ -26,7 +26,7 @@ export default function AiMigrationsSection() {
           transition={{ duration: reduceMotion ? 0 : 0.7, ease: EASE }}
           className="space-y-5"
         >
-          <h3 className="text-[clamp(1.9rem,3.4vw,2.7rem)] font-black text-[#1e1a12]">
+        <h3 className="heading-open text-[clamp(1.9rem,3.4vw,2.7rem)] font-black">
             AI MIGRATIONS
           </h3>
           <p className="text-[0.95rem] text-[#5f5a52] leading-relaxed">

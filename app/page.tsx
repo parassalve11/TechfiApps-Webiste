@@ -32,7 +32,7 @@ export default function Home() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#e8a020]">
                 Team In Action
               </p>
-              <h2 className="text-[clamp(2rem,4.6vw,3.8rem)] font-black leading-[0.92] text-[#1e1a12]">
+              <h2 className="heading-open text-[clamp(2rem,4.6vw,3.8rem)] font-black leading-[0.92]">
                 How product teams actually build.
               </h2>
               <p className="text-[0.98rem] leading-relaxed text-[#5f564c]">
@@ -61,7 +61,7 @@ export default function Home() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#e8a020]">
                 Meeting Snapshot
               </p>
-              <h3 className="text-[clamp(1.8rem,4vw,3.1rem)] font-black leading-[0.92] text-[#1e1a12]">
+              <h3 className="heading-open text-[clamp(1.8rem,4vw,3.1rem)] font-black leading-[0.92]">
                 Real client discussions, real delivery momentum.
               </h3>
               <p className="text-[0.96rem] leading-relaxed text-[#5f564c]">

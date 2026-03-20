@@ -86,7 +86,7 @@ export default function ContactFormSection({ intent }: ContactFormSectionProps) 
             </motion.div>
           )}
           <motion.h2
-            className="font-black text-[clamp(2rem,4.5vw,3.2rem)] leading-[1.05] text-[#1e1a12] mb-5"
+            className="heading-open font-black text-[clamp(2rem,4.5vw,3.2rem)] leading-[1.05] mb-5"
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.65, delay: 0.1, ease: EASE }}
@@ -135,7 +135,7 @@ export default function ContactFormSection({ intent }: ContactFormSectionProps) 
               className="bg-[#f5f0e8] rounded-2xl p-10 text-center"
             >
               <div className="text-4xl mb-4">Sent</div>
-              <h3 className="font-black text-xl text-[#1e1a12] mb-2">Request Sent</h3>
+              <h3 className="heading-open font-black text-xl mb-2">Request Sent</h3>
               <p className="text-sm text-[#666]">We'll get back to you within 24 hours.</p>
             </motion.div>
           ) : (

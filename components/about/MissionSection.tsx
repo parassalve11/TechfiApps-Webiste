@@ -144,7 +144,7 @@ export default function MissionSection() {
             Our Purpose
           </motion.p>
           <motion.h2
-            className="font-black text-[clamp(2.8rem,7vw,5.5rem)] leading-[0.92] tracking-[-0.02em] text-[#1e1a12]"
+            className="heading-open font-black text-[clamp(2.8rem,7vw,5.5rem)] leading-[0.92] tracking-[-0.02em]"
             initial={{ opacity: 0, y: reduceMotion ? 0 : 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
@@ -158,7 +158,7 @@ export default function MissionSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
             <motion.h3
-              className="font-black text-[clamp(1.4rem,2.5vw,1.9rem)] text-[#1e1a12] leading-[1.15] mb-5"
+              className="heading-open font-black text-[clamp(1.4rem,2.5vw,1.9rem)] leading-[1.15] mb-5"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.65, delay: 0.2, ease: EASE }}

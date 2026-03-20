@@ -37,7 +37,7 @@ export default function AiToolsSection() {
           transition={{ duration: reduceMotion ? 0 : 0.7, ease: EASE }}
           className="space-y-5"
         >
-          <h3 className="text-[clamp(1.8rem,3.2vw,2.6rem)] font-black text-[#1e1a12]">
+          <h3 className="heading-open text-[clamp(1.8rem,3.2vw,2.6rem)] font-black">
             AI TOOLS
           </h3>
           <p className="text-[0.95rem] text-[#5f5a52] leading-relaxed">

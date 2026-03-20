@@ -78,7 +78,7 @@ export default function SupportPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c88b2a]">
             Support Center
           </p>
-          <h1 className="mt-3 font-heading text-[clamp(2.2rem,4vw,3.2rem)] font-black text-[#1e1a12]">
+          <h1 className="heading-open mt-3 text-[clamp(2.2rem,4vw,3.2rem)] font-black">
             We’re here to help you move faster.
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#5b4a2e]">

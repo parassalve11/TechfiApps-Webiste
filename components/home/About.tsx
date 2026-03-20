@@ -60,7 +60,7 @@ export default function About() {
 
         <motion.h2
           variants={item}
-          className="font-heading font-black text-black mb-4 text-[clamp(1.6rem,3.5vw,2.4rem)] tracking-[0.02em]"
+          className="heading-open font-black mb-4 text-[clamp(1.6rem,3.5vw,2.4rem)] tracking-[0.02em]"
         >
           ABOUT TECHIFYAPPS
         </motion.h2>

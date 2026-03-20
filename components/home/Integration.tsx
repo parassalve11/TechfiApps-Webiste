@@ -97,7 +97,7 @@ export default function Integration() {
 
         <motion.h2
           variants={fd}
-          className="font-heading font-black text-black mb-4 text-[clamp(1.8rem,4vw,2.6rem)] leading-[1.1]"
+          className="heading-open font-black mb-4 text-[clamp(1.8rem,4vw,2.6rem)] leading-[1.1]"
         >
           SEAMLESS PRODUCT BUILD
           <br />

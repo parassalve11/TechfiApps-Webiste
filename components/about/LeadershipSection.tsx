@@ -24,7 +24,7 @@ export default function LeadershipSection() {
           Leadership
         </motion.p>
         <motion.h2
-          className="font-black text-[clamp(1.8rem,4vw,2.8rem)] text-[#1e1a12] mb-12"
+          className="heading-open font-black text-[clamp(1.8rem,4vw,2.8rem)] mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, delay: 0.1, ease: EASE }}

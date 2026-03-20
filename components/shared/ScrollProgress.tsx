@@ -42,10 +42,8 @@ export default function ScrollProgress() {
   /* ── Stuck detection ─────────────────────────── */
   const [isStuck, setIsStuck] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-  const [showNudge, setShowNudge] = useState(false);
   const lastProgress = useRef(0);
   const stuckTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const nudgeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const celebrationControls = useAnimationControls();
 
   useEffect(() => {
@@ -56,16 +54,13 @@ export default function ScrollProgress() {
       /* Clear stuck state whenever we move */
       if (delta > 0.002) {
         setIsStuck(false);
-        setShowNudge(false);
         if (stuckTimer.current) clearTimeout(stuckTimer.current);
-        if (nudgeTimer.current) clearTimeout(nudgeTimer.current);
       }
 
       /* Mark complete */
       if (v >= 0.995) {
         setIsComplete(true);
         setIsStuck(false);
-        setShowNudge(false);
         celebrationControls.start("celebrate");
         return;
       } else {
@@ -77,8 +72,6 @@ export default function ScrollProgress() {
       stuckTimer.current = setTimeout(() => {
         if (scrollYProgress.get() < 0.99) {
           setIsStuck(true);
-          /* After another 1.2 s → show nudge text */
-          nudgeTimer.current = setTimeout(() => setShowNudge(true), 1200);
         }
       }, 1800);
     });
@@ -86,7 +79,6 @@ export default function ScrollProgress() {
     return () => {
       unsub();
       if (stuckTimer.current) clearTimeout(stuckTimer.current);
-      if (nudgeTimer.current) clearTimeout(nudgeTimer.current);
     };
   }, [scrollYProgress, celebrationControls]);
 
@@ -221,55 +213,7 @@ export default function ScrollProgress() {
           aria-hidden="true"
         />
       </div>
-
-      {/* ── 9. "Scroll more" nudge ── */}
-      <AnimatePresence>
-        {showNudge && !isComplete && (
-          <motion.div
-            key="nudge"
-            className="fixed bottom-6 right-6 z-[59] pointer-events-none select-none"
-            initial={{ opacity: 0, y: 12, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.95 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="flex items-center gap-2 bg-[#1e1a12]/90 backdrop-blur-sm border border-[#e8a020]/30 rounded-full px-4 py-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.3)]">
-              {/* Animated arrow stack */}
-              <div className="flex flex-col items-center gap-[2px]">
-                {[0, 1, 2].map((i) => (
-                  <motion.svg
-                    key={i}
-                    width="8"
-                    height="5"
-                    viewBox="0 0 8 5"
-                    fill="none"
-                    animate={{ opacity: [0.3, 1, 0.3] }}
-                    transition={{
-                      duration: 1.1,
-                      repeat: Infinity,
-                      delay: i * 0.18,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <path
-                      d="M1 1l3 3 3-3"
-                      stroke="#e8a020"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </motion.svg>
-                ))}
-              </div>
-              <span className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-white/80">
-                Keep scrolling
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ── 10. "You're all caught up" toast at 100% ── */}
+{/* ── 9. "You\x27re all caught up" toast at 100% ── */}
       <AnimatePresence>
         {isComplete && (
           <motion.div
@@ -297,3 +241,5 @@ export default function ScrollProgress() {
     </>
   );
 }
+
+

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow, Barlow_Condensed } from "next/font/google";
+import { Barlow, Barlow_Condensed, Open_Sans } from "next/font/google";
 
 import "./globals.css";
 import "./home.css";
@@ -19,6 +19,13 @@ const barlowCondensed = Barlow_Condensed({
   display: "swap",
 });
 
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "TechifyApps | AI + App Development",
   description:
@@ -32,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${barlow.variable} ${barlowCondensed.variable} antialiased`}>
+      <body className={`${barlow.variable} ${barlowCondensed.variable} ${openSans.variable} antialiased`}>
         <ScrollProgress />
         {children}
       </body>

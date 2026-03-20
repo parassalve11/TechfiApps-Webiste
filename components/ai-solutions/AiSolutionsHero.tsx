@@ -19,7 +19,7 @@ export default function AiSolutionsHero() {
           transition={{ duration: reduceMotion ? 0 : 0.7, ease: EASE }}
           className="space-y-6"
         >
-          <h1 className="text-[clamp(2.4rem,5.2vw,4.1rem)] font-black leading-[0.95] tracking-[-0.02em] text-[#1e1a12]">
+          <h1 className="heading-open text-[clamp(2.4rem,5.2vw,4.1rem)] font-black leading-[0.95] tracking-[-0.02em]">
             AI SOLUTIONS
             <br />
             THAT TURN

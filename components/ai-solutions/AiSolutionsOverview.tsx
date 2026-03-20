@@ -47,7 +47,7 @@ export default function AiSolutionsOverview() {
           className="space-y-6"
         >
           <div className="space-y-4">
-            <h2 className="text-[clamp(2rem,4.4vw,3.2rem)] font-black text-[#1e1a12] leading-[0.95]">
+            <h2 className="heading-open text-[clamp(2rem,4.4vw,3.2rem)] font-black leading-[0.95]">
               AI
               <br />
               SOLUTIONS

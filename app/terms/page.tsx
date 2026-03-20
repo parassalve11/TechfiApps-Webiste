@@ -84,7 +84,7 @@ export default function TermsPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c88b2a]">
             Legal
           </p>
-          <h1 className="mt-3 font-heading text-[clamp(2.1rem,3.6vw,3rem)] font-black text-[#1e1a12]">
+          <h1 className="heading-open mt-3 text-[clamp(2.1rem,3.6vw,3rem)] font-black">
             Terms & Conditions
           </h1>
           <p className="mt-2 text-sm text-[#5b4a2e]">Effective date: {effectiveDate}</p>

@@ -37,7 +37,7 @@ export default function Ai4gHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.7, ease: EASE }}
         >
-          <h1 className="text-[clamp(2.6rem,6vw,4.2rem)] font-black leading-[0.95] tracking-[-0.02em] text-[#1e1a12]">
+          <h1 className="heading-open text-[clamp(2.6rem,6vw,4.2rem)] font-black leading-[0.95] tracking-[-0.02em]">
             AI
             <br />
             4GAPI

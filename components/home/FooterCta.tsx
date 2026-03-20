@@ -386,7 +386,7 @@ export default function FooterCta() {
               initial={{ opacity: 0, y: 10 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.25 }}
-              className="mt-2 font-heading text-[clamp(1.7rem,3.6vw,2.5rem)] font-black text-[#1e1a12]"
+              className="heading-open mt-2 text-[clamp(1.7rem,3.6vw,2.5rem)] font-black"
             >
               We build products that feel premium and perform at scale.
             </motion.h2>

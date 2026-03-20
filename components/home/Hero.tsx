@@ -341,6 +341,36 @@ export default function Hero() {
     },
   };
 
+  const mobileContainer = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 16 },
+    show: { opacity: 1, y: 0, transition: { duration: reduceMotion ? 0 : 0.8, ease } },
+  };
+
+  const mobileStagger = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: reduceMotion ? 0 : 0.08,
+        delayChildren: reduceMotion ? 0 : 0.08,
+      },
+    },
+  };
+
+  const mobileItem = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 12 },
+    show: { opacity: 1, y: 0, transition: { duration: reduceMotion ? 0 : 0.6, ease } },
+  };
+
+  const mobileFrame = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 18, scale: reduceMotion ? 1 : 0.96 },
+    show: {
+      opacity: 1, y: 0, scale: 1,
+      transition: { duration: reduceMotion ? 0 : 0.75, ease, delay: reduceMotion ? 0 : 0.2 },
+    },
+  };
+
   const widgetSpring = {
     hidden: { opacity: 0, scale: reduceMotion ? 1 : 0.6, y: reduceMotion ? 0 : 24 },
     show: (delay: number) => ({
@@ -398,17 +428,17 @@ export default function Hero() {
           {/* Title — spring slam */}
           <motion.h1
             variants={titleContainer}
-            className="mb-6 text-[#111] leading-[0.92] tracking-[-0.02em] [font-family:var(--font-barlow-condensed),sans-serif] font-black"
+            className="hero-title-main mb-6 leading-[0.92] tracking-[-0.02em] font-black"
           >
             <motion.span
               variants={titleLine}
-              className="block text-[#1b140a] text-[clamp(2.4rem,10.5vw,2.8rem)] sm:text-[clamp(2.7rem,11.5vw,3.3rem)] md:text-[clamp(3rem,5.5vw,5.2rem)]"
+              className="block text-[clamp(2.4rem,10.5vw,2.8rem)] sm:text-[clamp(2.7rem,11.5vw,3.3rem)] md:text-[clamp(3rem,5.5vw,5.2rem)]"
             >
               AI + APP
             </motion.span>
             <motion.span
               variants={titleLine}
-              className="block text-[#1b140a] text-[clamp(2.4rem,10.5vw,2.8rem)] sm:text-[clamp(2.7rem,11.5vw,3.3rem)] md:text-[clamp(3rem,5.5vw,5.2rem)]"
+              className="block text-[clamp(2.4rem,10.5vw,2.8rem)] sm:text-[clamp(2.7rem,11.5vw,3.3rem)] md:text-[clamp(3rem,5.5vw,5.2rem)]"
             >
               DEVELOPMENT
             </motion.span>
@@ -464,40 +494,163 @@ export default function Hero() {
         </motion.div>
 
         {/* Mobile-only hero card */}
-        <div className="hero-mobile-card md:hidden">
-          <div className="hero-mobile-media" aria-hidden="true">
-            <video
-              className="hero-mobile-video"
-              autoPlay
-              muted
-              playsInline
-              loop
-              preload="auto"
-              aria-hidden="true"
-            >
-              <source
-                src="/hero%20video/Futuristic%20android%20with%20glowing%20accents.webm"
-                type="video/webm"
-              />
-            </video>
-          </div>
-          <div className="hero-mobile-text">
-            <p className="hero-mobile-eyebrow">{HERO_EYEBROW}</p>
-            <h1 className="hero-mobile-title">
-              AI + APP
+        <motion.div
+          className="hero-mobile-card md:hidden"
+          variants={mobileContainer}
+          initial="hidden"
+          animate={textPhase ? "show" : "hidden"}
+        >
+          <motion.div variants={mobileStagger} initial="hidden" animate={textPhase ? "show" : "hidden"}>
+            <motion.p variants={mobileItem} className="hero-mobile-eyebrow">
+              AI-POWERED PRODUCT STUDIO
+            </motion.p>
+
+            <motion.h1 variants={mobileItem} className="hero-mobile-title">
+              AI + App
               <br />
-              DEVELOPMENT
-            </h1>
-            <p className="hero-mobile-body">
-              We help brands and startups build mobile apps, web platforms, and AI
-              automation, designed for speed, performance, and measurable business
-              outcomes.
-            </p>
-            <Link href="/contact" className="hero-mobile-cta btn-primary">
-              Get a proposal
-            </Link>
-          </div>
-        </div>
+              Development
+            </motion.h1>
+            <motion.p variants={mobileItem} className="hero-mobile-subtitle">
+              for Modern Teams
+            </motion.p>
+            <motion.p variants={mobileItem} className="hero-mobile-body">
+              We design and build mobile apps, web platforms, and AI automation optimized for speed,
+              scalability, and measurable business outcomes.
+            </motion.p>
+
+            <motion.div variants={mobileItem}>
+              <Link href="/contact" className="hero-mobile-cta">
+                Get a proposal
+                <span aria-hidden="true">→</span>
+              </Link>
+            </motion.div>
+
+            <motion.ul variants={listContainer} className="hero-mobile-points">
+              {heroPoints.map((point) => (
+                <motion.li key={point} variants={listItem} className="hero-mobile-point">
+                  <span className="check-icon" aria-hidden="true" />
+                  <span>{point}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.div>
+
+          <motion.div
+            className="hero-mobile-frame"
+            variants={mobileFrame}
+            initial="hidden"
+            animate={widgetsPhase ? "show" : "hidden"}
+          >
+            <motion.div
+              className="hero-mobile-frame-inner"
+              aria-hidden="true"
+              initial={{ scale: reduceMotion ? 1 : 1.02 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: reduceMotion ? 0 : 1.2, ease }}
+            >
+              <video
+                className="hero-mobile-frame-video"
+                autoPlay
+                muted
+                playsInline
+                loop
+                preload="auto"
+                aria-hidden="true"
+              >
+                <source
+                  src="/hero%20video/Futuristic%20android%20with%20glowing%20accents.webm"
+                  type="video/webm"
+                />
+              </video>
+            </motion.div>
+
+            <motion.div
+              className="hero-mobile-widget hero-mobile-widget-products"
+              aria-hidden="true"
+              custom={0.05}
+              variants={widgetSpring}
+              initial="hidden"
+              animate={widgetsPhase ? "show" : "hidden"}
+            >
+              <div className="hero-mobile-widget-row">
+                <div className="hero-mobile-widget-avatar">JD</div>
+                <div className="hero-mobile-widget-lines">
+                  <span />
+                  <span />
+                </div>
+              </div>
+              <div className="hero-mobile-widget-meta">
+                <span>PRODUCTS</span>
+                <span className="hero-mobile-widget-value">
+                  52<span> /10</span>
+                </span>
+              </div>
+              <div className="hero-mobile-widget-bar">
+                <span />
+              </div>
+              <div className="hero-mobile-widget-tag">ACTIVE</div>
+            </motion.div>
+
+            <motion.div
+              className="hero-mobile-widget hero-mobile-widget-growth"
+              aria-hidden="true"
+              custom={0.18}
+              variants={widgetSpring}
+              initial="hidden"
+              animate={widgetsPhase ? "show" : "hidden"}
+            >
+              <div className="hero-mobile-widget-meta">
+                <span>GROWTH</span>
+                <span className="hero-mobile-widget-value">
+                  67<span>%</span>
+                </span>
+              </div>
+              <div className="hero-mobile-bars">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="hero-mobile-phone"
+              aria-hidden="true"
+              custom={0.32}
+              variants={widgetSpring}
+              initial="hidden"
+              animate={widgetsPhase ? "show" : "hidden"}
+            >
+              <div className="hero-mobile-phone-notch" />
+              <div className="hero-mobile-phone-card">
+                <div className="hero-mobile-phone-card-row">
+                  <div className="hero-mobile-phone-dot" />
+                  <div className="hero-mobile-phone-lines">
+                    <span style={{ width: "70%" }} />
+                    <span style={{ width: "50%" }} />
+                  </div>
+                </div>
+                <div className="hero-mobile-phone-cta" />
+              </div>
+              <div className="hero-mobile-phone-card">
+                <div className="hero-mobile-phone-card-row">
+                  <div className="hero-mobile-phone-dot" />
+                  <div className="hero-mobile-phone-lines">
+                    <span style={{ width: "65%" }} />
+                    <span style={{ width: "42%" }} />
+                  </div>
+                </div>
+                <div className="hero-mobile-phone-cta" />
+              </div>
+              <div className="hero-mobile-phone-actions">
+                <span />
+                <span />
+                <span />
+              </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
         {/* -- Right: hero video + widgets -- */}
         <motion.div

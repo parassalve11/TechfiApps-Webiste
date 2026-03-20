@@ -23,7 +23,7 @@ export default function AiSolutionsPage() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#e8a020]">
                 Product Velocity
               </p>
-              <h2 className="text-[clamp(2.2rem,5vw,4.1rem)] font-black leading-[0.9] text-[#1e1a12]">
+              <h2 className="heading-open text-[clamp(2.2rem,5vw,4.1rem)] font-black leading-[0.9]">
                 Interactive spotlight on AI execution.
               </h2>
               <p className="text-[0.98rem] leading-relaxed text-[#5f564c]">

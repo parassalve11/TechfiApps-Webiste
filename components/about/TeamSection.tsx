@@ -16,7 +16,7 @@ export default function TeamSection() {
     <section ref={ref} className="bg-[#fafaf8] py-20">
       <div className="max-w-6xl mx-auto px-6">
         <motion.h2
-          className="font-black text-[clamp(1.6rem,3.5vw,2.4rem)] text-[#1e1a12] mb-10"
+          className="heading-open font-black text-[clamp(1.6rem,3.5vw,2.4rem)] mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: EASE }}

@@ -15,7 +15,7 @@ export default function Ai4gCta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: reduceMotion ? 0 : 0.6, ease: EASE }}
-          className="text-[clamp(1.6rem,3vw,2.2rem)] font-black text-[#1e1a12] mb-4"
+          className="heading-open text-[clamp(1.6rem,3vw,2.2rem)] font-black mb-4"
         >
           Tell us about your next big idea.
         </motion.h3>
